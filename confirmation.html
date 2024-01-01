@@ -1,0 +1,55 @@
+<!-- confirmation.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div id="confirmation-container">
+    <h2>Booking Confirmation</h2>
+    <div id="confirmation-message"></div>
+    <div id="booked-slots">
+        <h3>Your Booked Slots</h3>
+        <ul id="booked-list"></ul>
+    </div>
+</div>
+
+<script>
+    // Function to retrieve booked slots from local storage
+    function getBookedSlots() {
+        return JSON.parse(localStorage.getItem('bookedSlots')) || [];
+    }
+
+    // Function to display booked slots and confirmation message
+    function displayConfirmation() {
+        var confirmationMessage = document.getElementById('confirmation-message');
+        var bookedList = document.getElementById('booked-list');
+        var bookedSlots = getBookedSlots();
+
+        confirmationMessage.innerHTML = '';
+        bookedList.innerHTML = '';
+
+        if (bookedSlots.length > 0) {
+            // Display a warm greeting
+            var userGreeting = "Hello! Thank you for choosing our facilities. Here are your booked slots:";
+            confirmationMessage.innerHTML = `<p>${userGreeting}</p>`;
+
+            bookedSlots.forEach(function (booking) {
+                bookedList.innerHTML += `<li>${booking.facilityType} on ${booking.date} at ${booking.time}. Payment Details: ${booking.paymentDetails}. Total Cost: $${booking.totalCost}</li>`;
+            });
+        } else {
+            confirmationMessage.innerHTML = '<p>No bookings found. Please make a booking first.</p>';
+        }
+    }
+
+    // Initial display when the page loads
+    displayConfirmation();
+</script>
+
+</body>
+</html>
