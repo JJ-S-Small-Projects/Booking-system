@@ -1,109 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rental Facilities Booking System</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>SMKSAS Volleyball court</title>
 </head>
 <body>
+  <div class="container">
+    <h1>Volleyball Court SMK SAS</h1>
+    <H2>Announcement to all Volleyball Lovers!</H2>
+    <h3>The SMK SAS Highschool would like to rent out our Volleyball court every Weekend from 8 am - 12 pm! </h3>
+    <h5>Reserve your spot now!</h5>
+    <h5>Fee: RM 50/hour</h5>
+    <img src="c1.jpg" class="court1"><center><h5>Court 1 located @ Old Gymnasium</h5></center>
+    <img src="c2.jpg" class="court2"><center><h5>Court 2 located @ Outdoor Hall</h5></center>
+    <img src="c3.jpg" class="court3"><center><h5>Court 3 located @ New Gymnasium</h5></center>
+    
+    <center><a href="page2.html"><button class="button">Book now >></button></a></center>
+    <br><br>
+    <hr>
+    <center><footer>Designed by Jonathan Juining</footer></center>
+  </div>
 
-<div id="booking-container">
-    <h2>Rental Facilities Booking</h2>
-    <form id="booking-form">
-        <label for="facility-type">Select Facility Type:</label>
-        <select id="facility-type">
-            <option value="option1">Option 1 - Swimming Pool & Football Fields</option>
-            <option value="option2">Option 2 - Tennis Court & Slazenger Tennis Balls</option>
-            <option value="option3">Option 3 - Volleyball Court</option>
-        </select>
-
-        <label for="date">Select Date:</label>
-        <input type="date" id="date" required>
-
-        <label for="time">Select Time:</label>
-        <input type="time" id="time" required>
-
-        <label for="payment-details">Payment Details:</label>
-        <input type="text" id="payment-details" placeholder="Enter payment details" required>
-
-        <button type="button" onclick="bookFacility()">Book Facility</button>
-    </form>
-    <div id="confirmation-message"></div><br>
-    <a href="confirmation.html">
-        <button type="button">View Bookings</button>
-    </a>
-
-    <!-- Display booked slots section -->
-    <div id="booked-slots">
-        <h2>Your Booked Slots</h2>
-        <ul id="booked-list"></ul>
-    </div>
-</div>
-
-<script>
-    // Function to book a facility
-    function bookFacility() {
-        var facilityType = document.getElementById('facility-type').value;
-        var date = document.getElementById('date').value;
-        var time = document.getElementById('time').value;
-        var paymentDetails = document.getElementById('payment-details').value;
-
-        var confirmationMessage = document.getElementById('confirmation-message');
-        confirmationMessage.innerHTML = '';
-
-        // Check if the selected time is between 8 am and 12 pm on weekends
-        var selectedDate = new Date(date + ' ' + time);
-        var dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-        var isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // Check if it's Sunday or Saturday
-
-        if (isWeekend && selectedDate.getHours() >= 8 && selectedDate.getHours() <= 12) {
-            // Calculate the total cost and check if it's sustainable
-            var costPerDay = 100;
-            var totalCost = costPerDay; // Assuming the cost is USD 100 per day for now
-
-            if (totalCost >= 1000) {
-                confirmationMessage.innerHTML = `<p>Booking confirmed for ${facilityType} on ${date} at ${time}. Total Cost: $${totalCost}</p>`;
-                
-                // Save the booked slot to local storage
-                var bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || [];
-                var newBooking = {
-                    facilityType: facilityType,
-                    date: date,
-                    time: time,
-                    paymentDetails: paymentDetails,
-                    totalCost: totalCost
-                };
-                bookedSlots.push(newBooking);
-                localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
-
-                // Update the booked slots display
-                updateBookedSlots();
-            } else {
-                confirmationMessage.innerHTML = `<p>Booking confirmed for ${facilityType} on ${date} at ${time}. Total Cost: $${totalCost}. Not yet sustainable.</p>`;
-            }
-        } else {
-            confirmationMessage.innerHTML = '<p>Facilities can only be booked on weekends between 8 am and 12 pm.</p>';
-        }
-    }
-
-    // Function to update the booked slots display
-    function updateBookedSlots() {
-        var bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || [];
-        var bookedList = document.getElementById('booked-list');
-
-        bookedList.innerHTML = ''; // Clear previous entries
-
-        if (bookedSlots.length > 0) {
-            bookedSlots.forEach(function (booking) {
-                bookedList.innerHTML += `<li>${booking.facilityType} on ${booking.date} at ${booking.time}. Payment Details: ${booking.paymentDetails}. Total Cost: $${booking.totalCost}</li>`;
-            });
-        }
-    }
-
-    // Initial update of booked slots when the page loads
-    updateBookedSlots();
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>

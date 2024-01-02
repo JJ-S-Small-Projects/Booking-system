@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Page 3</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Volleyball Court SMK SAS</h1>
+    <h2>Nice ! You are one step away</h2>
+    <h5>Thanks for signing up!</h5>
+    <h5>Please screenshot this page and fill up this <a href="https://docs.google.com/forms/d/e/1FAIpQLSe_Tbk0Syda8QWbWQTyIlRjYNZFJswc2aQSGf-SD1ZY2TUIqg/viewform?usp=sf_link">form</a></h5>
+    <hr>
+    <p id="nameDisplay"></p>
+    <p id="emailDisplay"></p>
+    <p id="bookingDateDisplay"></p>
+    <p id="bookingTimeDisplay"></p>
+    <p id="selectFacilityDisplay"></p>
+    <p id="paymentTypeDisplay"></p>
+    <p id="phoneNumberDisplay"></p>
+    <hr>
+    <center><footer>Designed by Jonathan Juining</footer></center>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Extract parameters from the URL
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const bookingDate = params.get('bookingDate');
+    const bookingTime = params.get('bookingTime');
+    const selectFacility = params.get('selectFacility');
+    const paymentType = params.get('paymentType');
+    const email = params.get('email');
+    const phoneNumber = params.get('phoneNumber');
+
+    // Display data on Page 3
+    document.getElementById('nameDisplay').innerText = `Name: ${name}`;
+    document.getElementById('emailDisplay').innerText = `Email: ${email}`;
+    document.getElementById('bookingDateDisplay').innerText = `Booking Date: ${bookingDate}`;
+    document.getElementById('bookingTimeDisplay').innerText = `Booking Time: ${bookingTime}`;
+    document.getElementById('selectFacilityDisplay').innerText = `Selected Facility: ${selectFacility}`;
+    document.getElementById('paymentTypeDisplay').innerText = `Payment Type: ${paymentType}`;
+    document.getElementById('phoneNumberDisplay').innerText = `Phone Number: ${phoneNumber}`;
+  </script>
+</body>
+</html>
